@@ -2,6 +2,49 @@
 
 本技能仅关注一个目标：当 GitHub 仓库有新提交时，自动同步到 CNB 对应仓库。
 
+## 如何添加这个技能（3 种方式）
+
+### 方式 A：使用 `npx degit`（推荐）
+
+适合想快速拉取本技能目录到自己仓库的场景。
+
+```bash
+# 在你的目标仓库根目录执行
+npx degit logzh/cnb-sync-skill/skills/github-sync-to-cnb skills/github-sync-to-cnb
+```
+
+然后把模板复制到实际生效路径：
+
+```bash
+mkdir -p .github/workflows
+cp skills/github-sync-to-cnb/templates/.github/workflows/cnb_sync.yml .github/workflows/cnb_sync.yml
+```
+
+### 方式 B：使用 git sparse-checkout（不依赖 npx）
+
+```bash
+# 在临时目录执行
+git clone --filter=blob:none --sparse https://github.com/logzh/cnb-sync-skill.git /tmp/cnb-sync-skill
+cd /tmp/cnb-sync-skill
+git sparse-checkout set skills/github-sync-to-cnb
+```
+
+复制到你的仓库：
+
+```bash
+cp -r /tmp/cnb-sync-skill/skills/github-sync-to-cnb <your-repo>/skills/
+cp /tmp/cnb-sync-skill/skills/github-sync-to-cnb/templates/.github/workflows/cnb_sync.yml <your-repo>/.github/workflows/cnb_sync.yml
+```
+
+### 方式 C：仅拉取工作流文件（最轻量）
+
+```bash
+# 在你的目标仓库根目录执行
+mkdir -p .github/workflows
+curl -L "https://raw.githubusercontent.com/logzh/cnb-sync-skill/main/skills/github-sync-to-cnb/templates/.github/workflows/cnb_sync.yml" \
+  -o .github/workflows/cnb_sync.yml
+```
+
 ## 技能内容
 
 - `templates/.github/workflows/cnb_sync.yml`
