@@ -11,4 +11,4 @@
 
 1. 阅读技能文档：`skills/github-sync-to-cnb/README.md`
 2. 将模板文件复制到目标仓库相同路径
-3. 按文档替换 CNB 组织名并配置 Secrets
+3. 按文档替换 CNB 组织名并配置 Secret（GitHub 路径：`Settings -> Secrets and variables -> Actions`）

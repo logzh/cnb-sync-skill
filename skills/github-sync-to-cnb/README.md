@@ -14,8 +14,11 @@
 1. 将 `templates/.github/workflows/cnb_sync.yml` 复制到目标仓库同路径。
 2. 修改工作流中的 CNB 目标地址组织名：
    - `https://cnb.cool/<your-cnb-org>/${{ steps.repo-name.outputs.name }}.git`
-3. 在 GitHub 仓库中新增 Secret：
-   - `CNB_TOKEN`（需具备写入目标 CNB 仓库权限）
+3. 在 GitHub 仓库里设置 Secret：
+   - 进入：`Settings -> Secrets and variables -> Actions`
+   - 在 `Repository secrets` 区域点击 `New repository secret`
+   - `Name` 填写：`CNB_TOKEN`
+   - `Secret` 填写：可写入目标 CNB 仓库的访问令牌
 4. 向触发分支推送一次提交，确认 Action 执行成功。
 
 ## 可选调整
